@@ -1,4 +1,4 @@
-entrambi i proggetti includono il login tramite google
+entrambi i proggetti includono il login tramite google.
 il proggetto per il docente è completo mancano solo alcune rifiniture estetiche e di pulizia nel codice.
 
 il proggetto personale invece è incompleto ne manca la publicazione, 
