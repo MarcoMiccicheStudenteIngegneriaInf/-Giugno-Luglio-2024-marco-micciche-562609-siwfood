@@ -1,0 +1,540 @@
+body {
+    margin: 0;
+	background-color: #f8f8f8;
+    font-family: Arial, sans-serif;
+}
+.container_index {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Altezza dell'intera viewport per centrare verticalmente */
+}
+
+.container_index_box {
+    display: flex;
+    align-items: center;
+    width: 80%;
+}
+
+.text {
+    flex: 2;
+    padding-right: 20px;
+}
+
+.image {
+    flex: 1;
+}
+
+.image img {
+    max-width: 300px;
+}
+
+
+.sticky-header {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    background-color: #152021;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: all 0.3s ease;
+	
+}
+
+.sticky-header.rounded {
+    border-radius: 30px;
+    margin: 0px 20px;
+	top: 20px;
+	
+}
+
+.logo img {
+    height:70px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.container-auth{
+	
+	    display: flex; /* Utilizziamo flexbox per la disposizione degli elementi */
+	    justify-content: space-between; /* Questo allinea gli elementi a sinistra e a destra */
+	    align-items: center; /* Allinea gli elementi verticalmente al centro */
+	    padding: 10px; /* Aggiunge un po' di padding interno al container */
+		gap: 20px;
+}
+.right{
+	color: white;
+		text-decoration: none;
+		font-size: 16px;
+		
+}
+.login-btn,
+.get-started-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.get-started-btn {
+    background-color: #007bff;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.get-started-btn:hover {
+    background-color: #0056b3;
+}
+
+.login-btn:hover {
+    text-decoration: underline;
+}
+.profile-container-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    background-color: #f8f8f8;
+}
+
+.profile-container {
+    background-color: #ffffff;
+    width: 90%;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.user-info {
+    flex: 1;
+}
+
+.profile-picture {
+    margin-left: 20px;
+    text-align: center;
+}
+
+.profile-picture img {
+    display: block;
+    margin: 0 auto 10px;
+    border-radius: 50%;
+}
+
+.profile-picture form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-picture label,
+.profile-picture input,
+.profile-picture button {
+    margin: 5px 0;
+}
+
+.recipes-container {
+    margin-top: 20px;
+}
+/* Mobile styles */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+.add-ricetta-container {
+    width: 90%;
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.add-ricetta-title {
+    text-align: center;
+    color: #333333;
+}
+
+.add-ricetta-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-ricetta-form-group {
+    margin-bottom: 15px;
+}
+
+.add-ricetta-label {
+    margin-bottom: 5px;
+    color: #555555;
+    font-weight: bold;
+}
+
+.add-ricetta-input,
+.add-ricetta-textarea,
+.add-ricetta-select,
+.add-ricetta-button {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.add-ricetta-textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+.add-ricetta-button {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.add-ricetta-button:hover {
+    background-color: #45a049;
+}
+
+.confirmation-container {
+    width: 90%;
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.confirmation-title {
+    color: #333333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+
+.siw-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.siw-high-div {
+    padding: 20px;
+}
+
+.siw-section-title {
+    color: #333333;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.siw-recipes-container,
+.siw-ingredients-container {
+    list-style: none;
+    padding: 0;
+}
+
+.siw-recipes-container li,
+.siw-ingredients-container li {
+    margin-bottom: 15px;
+}
+
+.siw-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+}
+
+.siw-form {
+    margin-top: 15px;
+}
+
+.siw-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555555;
+    font-weight: bold;
+}
+
+.siw-input,
+.siw-textarea,
+.siw-file-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.siw-textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+.siw-button {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 4px;
+}
+
+.siw-button:hover {
+    background-color: #45a049;
+}
+
+.siw-ingredient-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.siw-recipe-link {
+    display: block;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: bold;
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.siw-recipe-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #1c1c1c;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .logo {
+        order: 2;
+    }
+
+    .auth-buttons {
+        order: 1;
+        flex-direction: column;
+    }
+}
+
+.high-div {
+    height: 2000px;
+    background-color: #c2d4c2; /* Questo è solo per visualizzare meglio il div */
+}
+.login-logout {
+  position: relative;
+  width: 120px;
+  height: 40px;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  color: white;
+  flex-direction: column;
+  justify-content: center;
+  border: none;
+  padding: 12px;
+  gap: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.login-logout::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  left: -4px;
+  top: -1px;
+  margin: auto;
+  width: 128px;
+  height: 48px;
+  border-radius: 10px;
+  background: linear-gradient(-45deg, #e3ece3 0%, #66b180 100% );
+  z-index: -10;
+  pointer-events: none;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.login-logout::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(-45deg, #e3ece3 0%, #66b180 100% );
+  transform: translate3d(0, 0, 0) scale(0.95);
+  filter: blur(20px);
+}
+
+.login-logout:hover::after {
+  filter: blur(30px);
+}
+
+.login-logout:hover::before {
+  transform: rotate(-180deg);
+}
+
+.login-logout:active::before {
+  scale: 0.7;
+}
+.login-logout a
+{
+	color: white;
+	text-decoration: none;
+	font-size: 16px;
+}
+
+
+.sliderRicette {
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto; /* Center the hero section */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card {
+    border-radius: 10px;
+    background-color: white;
+    width: 300px;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card .swiper-container {
+    width: 100%;
+    height: 200px; /* Altezza personalizzabile */
+    position: relative;
+}
+
+.card .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card .swiper-slide img {
+    width: 100%;
+    height: 200px; /* Altezza personalizzabile */
+    object-fit: cover; /* Ritaglia l'immagine per riempire il contenitore */
+}
+
+.card .swiper-button-next, .card .swiper-button-prev {
+    color: #000;
+}
+
+.card .swiper-button-next {
+    right: 10px; /* Posiziona la freccia internamente */
+}
+
+.card .swiper-button-prev {
+    left: 10px; /* Posiziona la freccia internamente */
+}
+
+.card .info {
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.recipe-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.recipes-slider {
+    width: 100%;
+    max-width: 1000px;
+    position: relative;
+}
+
+.recipes-slider .swiper-wrapper {
+    display: flex;
+}
+
+.recipes-slider .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card-link {
+    text-decoration: none; /* Rimuove la sottolineatura del link */
+    color: inherit; /* Mantiene il colore del testo */
+}
+
+.card-link:hover .card {
+    /* Aggiungi eventuali effetti di hover desiderati per l'intera card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.card-link p {
+    text-decoration: none; /* Rimuove la sottolineatura del testo nei paragrafi */
+    color: inherit; /* Mantiene il colore del testo */
+}
+
+

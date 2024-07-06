@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Add New Ricetta</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css" />
+
+</head>
+
+<body>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+    <div class="add-ricetta-container">
+        <h1 class="add-ricetta-title">Add New Ricetta</h1>
+        <form action="#" th:action="@{/admin/ricetta/new}" th:object="${ricetta}" method="post" class="add-ricetta-form">
+            <input type="hidden" th:name="userId" th:value="${userId}" />
+            <div class="add-ricetta-form-group">
+                <label for="nome" class="add-ricetta-label">Nome:</label>
+                <input type="text" id="nome" th:field="*{nome}" class="add-ricetta-input" />
+            </div>
+            <div class="add-ricetta-form-group">
+                <label for="descrizione" class="add-ricetta-label">Descrizione:</label>
+                <textarea id="descrizione" th:field="*{descrizione}" class="add-ricetta-textarea"></textarea>
+            </div>
+            <div class="add-ricetta-form-group">
+                <label for="categoria" class="add-ricetta-label">Categoria:</label>
+                <select id="categoria" th:field="*{categoria}" class="add-ricetta-select">
+                    <option value="primo">Primo</option>
+                    <option value="secondo">Secondo</option>
+                    <option value="contorno">Contorno</option>
+                    <option value="dolce">Dolce</option>
+                </select>
+            </div>
+            <button type="submit" class="add-ricetta-button">Aggiungi Ricetta</button>
+        </form>
+    </div>
+</body>
+
+</html>

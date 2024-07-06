@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Aggiungi Ingrediente</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+    <div class="add-ricetta-container">
+        <h1>Aggiungi Ingrediente</h1>
+        <form th:action="@{|/ricetta/${ricetta.id}/ingredient/add|}" th:object="${ingrediente}" method="post" >
+            <div class="form-group">
+                <label for="nome">Nome Ingrediente:</label>
+                <input type="text" id="nome" th:field="*{nome}" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="quantita">Quantita':</label>
+                <input type="text" id="quantita" th:field="*{quantita}" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Aggiungi</button>
+        </form>
+    </div>
+</body>
+</html>

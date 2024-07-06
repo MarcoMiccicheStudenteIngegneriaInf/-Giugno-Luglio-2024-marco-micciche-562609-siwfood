@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>siwFood Cuochi</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+	<body>
+		<div th:replace="~{fragments/navbar :: navbar}"></div>
+			<div class="high-div">	 
+				<tr th:each="ingrediente : ${tutti_ingredienti}">
+				    <td th:text="${ingrediente.nome}">Nome</td>
+				    <td th:text="${ingrediente.quantita}">quantita</td>
+					<br>
+				</tr>
+			</div>
+		
+	</body>
+</html>

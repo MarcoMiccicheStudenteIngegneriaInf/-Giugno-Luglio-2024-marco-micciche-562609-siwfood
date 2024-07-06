@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>siwFood utenti admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css" />
+    <style>
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f8f8f8;
+        }
+        .high-div {
+            margin-top: 20px;
+        }
+        button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #ff1a1a;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+	<div th:replace="~{fragments/navbar :: navbar}"></div>
+	<div class="container">
+  
+        <div class="high-div">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Cognome</th>
+                        <th>Provider</th>
+                        <th>Ricette</th>
+                        <th>Azione</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="utente : ${utenti}">
+                        <td th:text="${utente.name}">Nome</td>
+                        <td th:text="${utente.surname}">Cognome</td>
+                        <td th:text="${utente.provider}">Provider</td>
+                        <td>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Nome Ricetta</th>
+                                        <th>Descrizione Ricetta</th>
+                                        <th>Azione</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="ricetta : ${utente.ricette}">
+                                        <td th:text="${ricetta.nome}">Nome Ricetta</td>
+                                        <td th:text="${ricetta.descrizione}">Descrizione Ricetta</td>
+                                        <td>
+                                            <a th:href="@{'/admin/ricetta/pagina/' + ${ricetta.id} }">modifica</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <form th:action="@{'/admin/remove/user/' + ${utente.id}}" method="post">
+                                <input type="hidden" name="_method" value="delete" />
+                                <button type="submit">ELIMINA</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

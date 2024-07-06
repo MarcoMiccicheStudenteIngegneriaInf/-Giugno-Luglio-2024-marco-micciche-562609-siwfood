@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>siwFood Profilo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8">
+                <h1 th:text="${ricetta.nome}">Nome Ricetta</h1>
+                <p th:text="${ricetta.descrizione}">Descrizione Ricetta</p>
+                <h4>Cuoco: 
+                    <a th:href="@{/cuoco/{cuocoId}(cuocoId=${ricetta.utente.id})}" th:text="${ricetta.utente.name}">Cuoco</a>
+                </h4>
+                <h4>Ingredienti</h4>
+                <ul>
+                    <li th:each="ingrediente : ${ricetta.ingredienti}">
+                        <span th:text="${ingrediente.nome}">Nome Ingrediente</span>: <span th:text="${ingrediente.quantita}">Quantità</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h3>Foto</h3>
+                <div id="recipeCarousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div th:each="foto, stat : ${ricetta.ricettaPictures}" class="carousel-item" th:classappend="${stat.index == 0} ? ' active'">
+                            <img th:src="@{/images/{foto}(foto=${foto})}" class="d-block w-100" alt="Foto ricetta">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#recipeCarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#recipeCarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

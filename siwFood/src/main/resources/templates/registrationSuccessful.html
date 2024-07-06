@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>siwFood - Registrazione conclusa</title>
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+	<div class="siw-container">
+    <h1>Congratulazioni ti sei registrato!</h1>
+    <div>
+        <span>Nome: </span>
+        <span th:text="${user.name}"></span>
+    </div>
+    <div>
+        <span>Cognome: </span>
+        <span th:text="${user.surname}"></span>
+    </div>
+    <div>
+        <span>Email: </span>
+        <span th:text="${user.email}"></span>
+    </div>
+	</div>
+</body>
+</html>

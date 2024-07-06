@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>siwFood Profilo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css" />
+
+</head>
+
+<body>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+    <div class="siw-high-div">
+        <div class="siw-container">
+            <p class="siw-section-title">Immagini della ricetta:</p>
+            <ul class="siw-recipes-container">
+                <li th:each="picture : ${ricetta.ricettaPictures}">
+                    <img th:src="@{'/images/' + ${picture}}" alt="Immagine ricetta" class="siw-image" />
+                    <form th:action="@{'/user/ricetta/removePhoto/' + ${ricetta.id}}" method="POST" class="siw-form">
+                        <input type="hidden" name="image" th:value="${picture}" />
+                        <button type="submit" class="siw-button">Rimuovi</button>
+                    </form>
+                </li>
+            </ul>
+
+            <form th:action="@{'/user/ricetta/savePhoto/' + ${ricetta.id}}" method="POST" enctype="multipart/form-data" class="siw-form">
+                <label for="image" class="siw-label">Choose image to upload</label>
+                <input type="file" name="image" accept="image/*" required class="siw-file-input">
+                <button type="submit" class="siw-button">Upload</button>
+            </form>
+        </div>
+
+        <div class="siw-container">
+            <h1 class="siw-section-title">Aggiorna Ricetta</h1>
+
+            <form th:action="@{/ricetta/update/{ricettaId}(ricettaId=${ricetta.id})}" th:object="${ricetta}" method="post" class="siw-form">
+                <input type="hidden" th:field="*{id}" />
+
+                <div class="siw-form-group">
+                    <label for="nome" class="siw-label">Nome:</label>
+                    <input type="text" id="nome" th:field="*{nome}" required class="siw-input" />
+                </div>
+
+                <div class="siw-form-group">
+                    <label for="descrizione" class="siw-label">Descrizione:</label>
+                    <textarea id="descrizione" th:field="*{descrizione}" required class="siw-textarea"></textarea>
+                </div>
+
+                <button type="submit" class="siw-button">Salva Modifiche</button>
+            </form>
+        </div>
+
+        <div class="siw-container">
+            <p class="siw-section-title">Ingredienti:</p>
+            <a th:href="@{'/ricetta/' + ${ricetta.id} + '/ingredient/add'}" class="siw-recipe-link">Aggiungi Ingrediente</a>
+            <ul class="siw-ingredients-container">
+                <li th:each="ingrediente : ${ricetta.ingredienti}">
+                    <div class="siw-ingredient-actions">
+                        <span th:text="${ingrediente.nome}">Nome Ingrediente</span>: <span th:text="${ingrediente.quantita}">Quantità</span>
+                        <form th:action="@{'/ingrediente/delete/' + ${ingrediente.id} + '/ricetta/' + ${ricetta.id}}" method="post" class="siw-form">
+                            <input type="hidden" name="_method" value="delete" />
+                            <button type="submit" class="siw-button">ELIMINA</button>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

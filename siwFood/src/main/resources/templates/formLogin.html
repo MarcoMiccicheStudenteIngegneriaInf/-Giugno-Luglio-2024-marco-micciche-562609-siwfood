@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+    <!-- Navbar -->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <!-- Login Form Section -->
+    <div class="siw-container">
+        <h2>Login</h2>
+        <form th:action="@{/login}" method="post" class="login-form">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </form>
+
+        <!-- Alternative Login Option -->
+        <div class="oauth-login">
+            <a th:href="@{/oauth2/authorization/google}" class="btn btn-google">Login con Google</a>
+        </div>
+
+        <!-- User Info Section -->
+        <div th:if="${userDetails != null}" class="user-info">
+            <p>Logged in as: <span th:text="${userDetails instanceof T(org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser) ? userDetails.fullName : userDetails.username}"></span></p>
+        </div>
+
+        <!-- Registration Link -->
+        <div class="register-link">
+            <a th:href="@{/register}" class="btn btn-link">Registrati</a>
+        </div>
+    </div>
+</body>
+</html>

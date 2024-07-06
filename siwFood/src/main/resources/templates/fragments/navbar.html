@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fragment</title>
+</head>
+<body>
+    <nav class="sticky-header" id="navbar" th:fragment="navbar">
+        <div class="logo">
+			<a th:href="@{/}">
+			    <img th:src="@{/images/logo.png}" alt="Logo">
+			</a>
+
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a th:href="@{/ricette}">Ricette</a></li>
+            <li><a th:href="@{/cuochi}">Cuochi</a></li>
+			<li th:if="${#authentication.principal instanceof T(org.springframework.security.oauth2.core.oidc.user.OidcUser) || #authentication.principal instanceof T(org.springframework.security.core.userdetails.UserDetails)}"><a th:href="@{/user}">Profilo</a></li>
+        </ul>
+        <div class="auth-buttons">
+        <div class=" container-auth" th:if="${#authentication.principal instanceof T(org.springframework.security.oauth2.core.oidc.user.OidcUser) || #authentication.principal instanceof T(org.springframework.security.core.userdetails.UserDetails)}">
+			<div class="right" th:text="${username}">Utente</div>
+                     <button class="login-logout">  <a  th:href="@{/logout}"> Logout</a></button>
+            
+        </div>
+     
+        
+        <div th:unless="${#authentication.principal instanceof T(org.springframework.security.oauth2.core.oidc.user.OidcUser) || #authentication.principal instanceof T(org.springframework.security.core.userdetails.UserDetails)}">
+            <button class="login-logout" ><a th:href="@{/login}">Login</a></button>
+        </div>
+        </div>
+        <button class="menu-toggle" id="menu-toggle">☰</button>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbar = document.getElementById('navbar');
+            const menuToggle = document.getElementById('menu-toggle');
+            const navLinks = document.getElementById('nav-links');
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 0) {
+                    navbar.classList.add('rounded');
+                } else {
+                    navbar.classList.remove('rounded');
+                }
+            });
+
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('show');
+            });
+        });
+    </script>
+	</nav>
+</body>
+</html>

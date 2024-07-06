@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pagina del Cuoco</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+</head>
+<body>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 th:text="${cuoco.name}">Nome Cuoco</h1>
+                <p th:text="${cuoco.surname}">Cognome Cuoco</p>
+                <p th:text="${cuoco.birthday}">Data di Nascita</p>
+            </div>
+            <div class="col-md-6">
+                <img th:src="@{/images/{foto}(foto=${cuoco.picture})}" class="d-block w-100" alt="Foto cuoco">
+            </div>
+        </div>
+        
+        <div class="sliderRicette">
+            <h2>primo</h2>
+            <div class="recipes-slider swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" th:each="ricetta : ${cuoco.ricette}">
+                        <a th:href="@{/ricetta/{id}(id=${ricetta.id})}" class="card-link">
+                            <div class="card">
+                                <div class="swiper-container">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide" th:each="picture : ${ricetta.ricettaPictures}">
+                                            <img th:src="@{'/images/' + ${picture}}" alt="Immagine ricetta"/>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-pagination"></div>
+                                </div>
+                                <div class="info">
+                                    <p th:text="${ricetta.nome}">Nome Ricetta</p>
+                                    <p>Cuoco: <span th:text="${ricetta.utente.name}">Nome Cuoco</span></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var recipesSwiper = new Swiper('.recipes-slider', {
+                slidesPerView: 3,  // Mostra 3 ricette alla volta
+                spaceBetween: 20,
+                pagination: {
+                    el: '.recipes-slider .swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                loop: true,
+                autoplay: {
+                    delay: 5000, // Cambia slide ogni 5 secondi
+                    disableOnInteraction: false,
+                },
+            });
+            
+            var innerSwipers = document.querySelectorAll('.card .swiper-container');
+            innerSwipers.forEach(function(swiperContainer) {
+                new Swiper(swiperContainer, {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                    pagination: {
+                        el: swiperContainer.querySelector('.swiper-pagination'),
+                        clickable: true,
+                    },
+                    navigation: {
+                        nextEl: swiperContainer.querySelector('.swiper-button-next'),
+                        prevEl: swiperContainer.querySelector('.swiper-button-prev'),
+                    },
+                    loop: true,
+                    autoplay: {
+                        delay: 5000, // Cambia slide ogni 5 secondi
+                        disableOnInteraction: false,
+                    },
+                });
+            });
+        });
+    </script>
+</body>
+</html>

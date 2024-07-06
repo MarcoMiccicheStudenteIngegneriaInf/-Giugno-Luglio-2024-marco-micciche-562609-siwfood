@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>siwFood Profilo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css" />
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+    
+    <div class="profile-container-wrapper">
+        <div class="profile-container">
+            <h1>User Profile</h1>
+            
+            <div th:if="${user != null}" class="profile-content">
+                <div class="user-info">
+                    <p>User ID: <span th:text="${user.id}"></span></p>
+                    <p><strong>Name:</strong> <span th:text="${user.name}"></span></p>
+                    <p><strong>Surname:</strong> <span th:text="${user.surname}"></span></p>
+                    <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+                    <a th:href="@{/ricetta/new(userId=${user.id})}">Add a new recipe</a>
+                </div>
+                
+                <div class="profile-picture">
+                    <img th:src="@{'/images/' + ${user.picture}}" alt="Profile Picture" width="150"/>
+                    <form th:action="@{/user/savePhoto}" method="POST" enctype="multipart/form-data">
+                        <label for="image">Choose image to upload</label>
+                        <input type="file" name="image" accept="image/*" required>
+                        <button type="submit">Upload</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div th:if="${user != null}" class="recipes-container">
+                <h2>Recipes</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Recipe Name</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="ricetta : ${ricette}">
+                            <td th:text="${ricetta.nome}">Recipe Name</td>
+                            <td th:text="${ricetta.descrizione}">Recipe Description</td>
+                            <td>
+                                <a th:href="@{'/ricetta/pagina/' + ${ricetta.id} }">Edit</a>
+                                <form th:action="@{'/delete/' + ${ricetta.id}}" method="post" style="display:inline;">
+                                    <input type="hidden" name="_method" value="delete" />
+                                    <button type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div th:if="${user == null}">
+                <p>No user information available.</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
